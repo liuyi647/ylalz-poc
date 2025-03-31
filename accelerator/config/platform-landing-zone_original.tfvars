@@ -32,15 +32,17 @@ custom_replacements = {
     management_resource_group_name               = "rg-management-$${starter_location_01}"
     connectivity_hub_primary_resource_group_name = "rg-hub-$${starter_location_01}"
     dns_resource_group_name                      = "rg-hub-dns-$${starter_location_01}"
-    asc_export_resource_group_name               = "rg-asc-export-$${starter_location_01}"
+    # ddos_resource_group_name                     = "rg-hub-ddos-$${starter_location_01}"
+    asc_export_resource_group_name = "rg-asc-export-$${starter_location_01}"
 
     # Resource names management
-    log_analytics_workspace_name            = "law-management-$${starter_location_01}"
-    automation_account_name                 = "aa-management-$${starter_location_01}"
-    ama_user_assigned_managed_identity_name = "uami-management-ama-$${starter_location_01}"
-    dcr_change_tracking_name                = "dcr-change-tracking"
-    dcr_defender_sql_name                   = "dcr-defender-sql"
-    dcr_vm_insights_name                    = "dcr-vm-insights"
+    log_analytics_workspace_name = "law-management-$${starter_location_01}"
+    # ddos_protection_plan_name               = "ddos-$${starter_location_01}"
+    automation_account_name = "aa-management-$${starter_location_01}"
+    # ama_user_assigned_managed_identity_name = "uami-management-ama-$${starter_location_01}"
+    # dcr_change_tracking_name                = "dcr-change-tracking"
+    # dcr_defender_sql_name                   = "dcr-defender-sql"
+    # dcr_vm_insights_name                    = "dcr-vm-insights"
 
     # Resource names primary connectivity
     primary_virtual_network_name          = "vnet-hub-$${starter_location_01}"
@@ -49,16 +51,24 @@ custom_replacements = {
     primary_firewall_public_ip_name       = "pip-fw-hub-$${starter_location_01}"
     primary_route_table_firewall_name     = "rt-hub-fw-$${starter_location_01}"
     primary_route_table_user_subnets_name = "rt-hub-std-$${starter_location_01}"
-    primary_private_dns_resolver_name     = "pdr-hub-dns-$${starter_location_01}"
+    # primary_virtual_network_gateway_express_route_name           = "vgw-hub-er-$${starter_location_01}"
+    # primary_virtual_network_gateway_express_route_public_ip_name = "pip-vgw-hub-er-$${starter_location_01}"
+    # primary_virtual_network_gateway_vpn_name                     = "vgw-hub-vpn-$${starter_location_01}"
+    # primary_virtual_network_gateway_vpn_public_ip_name_1         = "pip-vgw-hub-vpn-$${starter_location_01}-001"
+    # primary_virtual_network_gateway_vpn_public_ip_name_2         = "pip-vgw-hub-vpn-$${starter_location_01}-002"
+    primary_private_dns_resolver_name = "pdr-hub-dns-$${starter_location_01}"
+    # primary_bastion_host_name                                    = "bas-hub-$${starter_location_01}"
+    # primary_bastion_host_public_ip_name                          = "pip-bastion-hub-$${starter_location_01}"
 
     # Private DNS Zones primary
     primary_auto_registration_zone_name = "$${starter_location_01}.azure.local"
 
     # IP Ranges Primary
     # Regional Address Space: 10.0.0.0/16
-    primary_hub_address_space                          = "10.0.0.0/16"
-    primary_hub_virtual_network_address_space          = "10.0.0.0/22"
-    primary_firewall_subnet_address_prefix             = "10.0.0.0/26"
+    primary_hub_address_space                 = "10.0.0.0/16"
+    primary_hub_virtual_network_address_space = "10.0.0.0/22"
+    primary_firewall_subnet_address_prefix    = "10.0.0.0/26"
+    # primary_bastion_subnet_address_prefix              = "10.0.0.64/26"
     primary_gateway_subnet_address_prefix              = "10.0.0.128/27"
     primary_private_dns_resolver_subnet_address_prefix = "10.0.0.160/28"
   }
@@ -71,6 +81,7 @@ custom_replacements = {
   */
   resource_group_identifiers = {
     management_resource_group_id = "/subscriptions/$${subscription_id_management}/resourcegroups/$${management_resource_group_name}"
+    # ddos_protection_plan_resource_group_id = "/subscriptions/$${subscription_id_connectivity}/resourcegroups/$${ddos_resource_group_name}"
   }
 
   /*
@@ -80,11 +91,12 @@ custom_replacements = {
   NOTE: You cannot refer to another custom resource identifier in this variable.
   */
   resource_identifiers = {
-    ama_change_tracking_data_collection_rule_id = "$${management_resource_group_id}/providers/Microsoft.Insights/dataCollectionRules/$${dcr_change_tracking_name}"
-    ama_mdfc_sql_data_collection_rule_id        = "$${management_resource_group_id}/providers/Microsoft.Insights/dataCollectionRules/$${dcr_defender_sql_name}"
-    ama_vm_insights_data_collection_rule_id     = "$${management_resource_group_id}/providers/Microsoft.Insights/dataCollectionRules/$${dcr_vm_insights_name}"
-    ama_user_assigned_managed_identity_id       = "$${management_resource_group_id}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$${ama_user_assigned_managed_identity_name}"
-    log_analytics_workspace_id                  = "$${management_resource_group_id}/providers/Microsoft.OperationalInsights/workspaces/$${log_analytics_workspace_name}"
+    # ama_change_tracking_data_collection_rule_id = "$${management_resource_group_id}/providers/Microsoft.Insights/dataCollectionRules/$${dcr_change_tracking_name}"
+    ama_mdfc_sql_data_collection_rule_id    = "$${management_resource_group_id}/providers/Microsoft.Insights/dataCollectionRules/$${dcr_defender_sql_name}"
+    ama_vm_insights_data_collection_rule_id = "$${management_resource_group_id}/providers/Microsoft.Insights/dataCollectionRules/$${dcr_vm_insights_name}"
+    ama_user_assigned_managed_identity_id   = "$${management_resource_group_id}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/$${ama_user_assigned_managed_identity_name}"
+    log_analytics_workspace_id              = "$${management_resource_group_id}/providers/Microsoft.OperationalInsights/workspaces/$${log_analytics_workspace_name}"
+    # ddos_protection_plan_id                     = "$${ddos_protection_plan_resource_group_id}/providers/Microsoft.Network/ddosProtectionPlans/$${ddos_protection_plan_name}"
   }
 }
 
@@ -110,23 +122,24 @@ management_resource_settings = {
   location                     = "$${starter_location_01}"
   log_analytics_workspace_name = "$${log_analytics_workspace_name}"
   resource_group_name          = "$${management_resource_group_name}"
-  user_assigned_managed_identities = {
-    ama = {
-      name = "$${ama_user_assigned_managed_identity_name}"
-    }
-  }
-  data_collection_rules = {
-    change_tracking = {
-      name = "$${dcr_change_tracking_name}"
-    }
-    defender_sql = {
-      name = "$${dcr_defender_sql_name}"
-    }
-    vm_insights = {
-      name = "$${dcr_vm_insights_name}"
-    }
-  }
+  # user_assigned_managed_identities = {
+  #   ama = {
+  #     name = "$${ama_user_assigned_managed_identity_name}"
+  #   }
+  # }
+  # data_collection_rules = {
+  #   change_tracking = {
+  #     name = "$${dcr_change_tracking_name}"
+  #   }
+  #   defender_sql = {
+  #     name = "$${dcr_defender_sql_name}"
+  #   }
+  #   vm_insights = {
+  #     name = "$${dcr_vm_insights_name}"
+  #   }
+  # }
 }
+
 /*
 --- Management Groups and Policy ---
 You can use this section to customize the management groups and policies that will be deployed.
@@ -136,15 +149,16 @@ management_group_settings = {
   location           = "$${starter_location_01}"
   parent_resource_id = "$${root_parent_management_group_id}"
   policy_default_values = {
-    ama_change_tracking_data_collection_rule_id = "$${ama_change_tracking_data_collection_rule_id}"
-    ama_mdfc_sql_data_collection_rule_id        = "$${ama_mdfc_sql_data_collection_rule_id}"
-    ama_vm_insights_data_collection_rule_id     = "$${ama_vm_insights_data_collection_rule_id}"
-    ama_user_assigned_managed_identity_id       = "$${ama_user_assigned_managed_identity_id}"
-    ama_user_assigned_managed_identity_name     = "$${ama_user_assigned_managed_identity_name}"
-    log_analytics_workspace_id                  = "$${log_analytics_workspace_id}"
-    private_dns_zone_subscription_id            = "$${subscription_id_connectivity}"
-    private_dns_zone_region                     = "$${starter_location_01}"
-    private_dns_zone_resource_group_name        = "$${dns_resource_group_name}"
+    # ama_change_tracking_data_collection_rule_id = "$${ama_change_tracking_data_collection_rule_id}"
+    # ama_mdfc_sql_data_collection_rule_id        = "$${ama_mdfc_sql_data_collection_rule_id}"
+    # ama_vm_insights_data_collection_rule_id     = "$${ama_vm_insights_data_collection_rule_id}"
+    # ama_user_assigned_managed_identity_id       = "$${ama_user_assigned_managed_identity_id}"
+    # ama_user_assigned_managed_identity_name     = "$${ama_user_assigned_managed_identity_name}"
+    log_analytics_workspace_id = "$${log_analytics_workspace_id}"
+    # ddos_protection_plan_id                     = "$${ddos_protection_plan_id}"
+    private_dns_zone_subscription_id     = "$${subscription_id_connectivity}"
+    private_dns_zone_region              = "$${starter_location_01}"
+    private_dns_zone_resource_group_name = "$${dns_resource_group_name}"
   }
   subscription_placement = {
     identity = {
@@ -179,18 +193,18 @@ management_group_settings = {
             ascExportResourceGroupName                  = "$${asc_export_resource_group_name}"
             ascExportResourceGroupLocation              = "$${starter_location_01}"
             emailSecurityContact                        = "$${defender_email_security_contact}"
-            enableAscForServers                         = "Disabled"
-            enableAscForServersVulnerabilityAssessments = "Disabled"
-            enableAscForSql                             = "Disabled"
-            enableAscForAppServices                     = "Disabled"
-            enableAscForStorage                         = "Disabled"
-            enableAscForContainers                      = "Disabled"
-            enableAscForKeyVault                        = "Disabled"
-            enableAscForSqlOnVm                         = "Disabled"
-            enableAscForArm                             = "Disabled"
-            enableAscForOssDb                           = "Disabled"
-            enableAscForCosmosDbs                       = "Disabled"
-            enableAscForCspm                            = "Disabled"
+            enableAscForServers                         = "Disabled" //"DeployIfNotExists"
+            enableAscForServersVulnerabilityAssessments = "Disabled" //"DeployIfNotExists"
+            enableAscForSql                             = "Disabled" //"DeployIfNotExists"
+            enableAscForAppServices                     = "Disabled" //"DeployIfNotExists"
+            enableAscForStorage                         = "Disabled" //"DeployIfNotExists"
+            enableAscForContainers                      = "Disabled" //"DeployIfNotExists"
+            enableAscForKeyVault                        = "Disabled" //"DeployIfNotExists"
+            enableAscForSqlOnVm                         = "Disabled" //"DeployIfNotExists"
+            enableAscForArm                             = "Disabled" //"DeployIfNotExists"
+            enableAscForOssDb                           = "Disabled" //"DeployIfNotExists"
+            enableAscForCosmosDbs                       = "Disabled" //"DeployIfNotExists"
+            enableAscForCspm                            = "Disabled" //"DeployIfNotExists"
           }
         }
       }
@@ -278,6 +292,10 @@ You can use this section to customize the hub virtual networking that will be de
 connectivity_type = "hub_and_spoke_vnet"
 
 connectivity_resource_groups = {
+  # ddos = {
+  #   name     = "$${ddos_resource_group_name}"
+  #   location = "$${starter_location_01}"
+  # }
   vnet_primary = {
     name     = "$${connectivity_hub_primary_resource_group_name}"
     location = "$${starter_location_01}"
@@ -286,6 +304,14 @@ connectivity_resource_groups = {
     name     = "$${dns_resource_group_name}"
     location = "$${starter_location_01}"
   }
+}
+
+hub_and_spoke_vnet_settings = {
+  # ddos_protection_plan = {
+  #   name                = "$${ddos_protection_plan_name}"
+  #   resource_group_name = "$${ddos_resource_group_name}"
+  #   location            = "$${starter_location_01}"
+  # }
 }
 
 hub_and_spoke_vnet_virtual_networks = {
@@ -298,7 +324,8 @@ hub_and_spoke_vnet_virtual_networks = {
       routing_address_space         = ["$${primary_hub_address_space}"]
       route_table_name_firewall     = "$${primary_route_table_firewall_name}"
       route_table_name_user_subnets = "$${primary_route_table_user_subnets_name}"
-      subnets                       = {}
+      # ddos_protection_plan_id       = "$${ddos_protection_plan_id}"
+      subnets = {}
       firewall = {
         subnet_address_prefix = "$${primary_firewall_subnet_address_prefix}"
         name                  = "$${primary_firewall_name}"
@@ -316,6 +343,41 @@ hub_and_spoke_vnet_virtual_networks = {
         }
       }
     }
+    virtual_network_gateways = {
+      #   subnet_address_prefix = "$${primary_gateway_subnet_address_prefix}"
+      #   express_route = {
+      #     location = "$${starter_location_01}"
+      #     name     = "$${primary_virtual_network_gateway_express_route_name}"
+      #     sku      = "$${starter_location_01_virtual_network_gateway_sku_express_route}"
+      #     ip_configurations = {
+      #       default = {
+      #         public_ip = {
+      #           name  = "$${primary_virtual_network_gateway_express_route_public_ip_name}"
+      #           zones = "$${starter_location_01_availability_zones}"
+      #         }
+      #       }
+      #     }
+      #   }
+      # vpn = {
+      #   location = "$${starter_location_01}"
+      #   name     = "$${primary_virtual_network_gateway_vpn_name}"
+      #   sku      = "$${starter_location_01_virtual_network_gateway_sku_vpn}"
+      #   ip_configurations = {
+      #     active_active_1 = {
+      #       public_ip = {
+      #         name  = "$${primary_virtual_network_gateway_vpn_public_ip_name_1}"
+      #         zones = "$${starter_location_01_availability_zones}"
+      #       }
+      #     }
+      #     active_active_2 = {
+      #       public_ip = {
+      #         name  = "$${primary_virtual_network_gateway_vpn_public_ip_name_2}"
+      #         zones = "$${starter_location_01_availability_zones}"
+      #       }
+      #     }
+      #   }
+      # }
+    }
     private_dns_zones = {
       resource_group_name            = "$${dns_resource_group_name}"
       is_primary                     = true
@@ -326,5 +388,15 @@ hub_and_spoke_vnet_virtual_networks = {
         name = "$${primary_private_dns_resolver_name}"
       }
     }
+    # bastion = {
+    #   subnet_address_prefix = "$${primary_bastion_subnet_address_prefix}"
+    #   bastion_host = {
+    #     name = "$${primary_bastion_host_name}"
+    #   }
+    #   bastion_public_ip = {
+    #     name  = "$${primary_bastion_host_public_ip_name}"
+    #     zones = "$${starter_location_01_availability_zones}"
+    #   }
+    # }
   }
 }
