@@ -9,11 +9,11 @@ starter_module_name: "platform_landing_zone"
 
 # Shared Interface Inputs
 bootstrap_location: "australiaeast"
-starter_locations: ["ae"]
+starter_locations: ["australiaeast"]
 root_parent_management_group_id: "alz-poc"
-subscription_id_management: "e99e4799-5a60-4534-a439-86e4ca191f11"
-subscription_id_identity: "a6e8cbd7-e4fe-4059-b3f4-cd7450538937"
-subscription_id_connectivity: "1533cd1f-5834-4b5b-8135-01b889b40dce"
+subscription_id_management: "{yourMgmtSubID}"
+subscription_id_identity: "{yourIdentitySubID}"
+subscription_id_connectivity: "{yourConnectivitySubID}"
 
 # Bootstrap Inputs
 github_personal_access_token: "{yourGitHubPAT}"
