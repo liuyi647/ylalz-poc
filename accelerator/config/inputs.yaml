@@ -1,0 +1,36 @@
+---
+# For detailed instructions on using this file, visit:
+# https://aka.ms/alz/accelerator/docs
+
+# Basic Inputs
+iac_type: "terraform"
+bootstrap_module_name: "alz_github"
+starter_module_name: "platform_landing_zone"
+
+# Shared Interface Inputs
+bootstrap_location: "australiaeast"
+starter_locations: ["ae"]
+root_parent_management_group_id: "alz-poc"
+subscription_id_management: "e99e4799-5a60-4534-a439-86e4ca191f11"
+subscription_id_identity: "a6e8cbd7-e4fe-4059-b3f4-cd7450538937"
+subscription_id_connectivity: "1533cd1f-5834-4b5b-8135-01b889b40dce"
+
+# Bootstrap Inputs
+github_personal_access_token: "{yourGitHubPAT}"
+github_runners_personal_access_token: ""
+github_organization_name: "ClearPointNZ"
+use_separate_repository_for_templates: false
+bootstrap_subscription_id: "e99e4799-5a60-4534-a439-86e4ca191f11"
+service_name: "yialz"
+environment_name: "mgmt"
+postfix_number: 1
+use_self_hosted_runners: false
+use_private_networking: false
+allow_storage_access_from_my_ip: true
+apply_approvers: ["yi.liu@clearpoint.co.nz"]
+create_branch_policies: false
+
+# Advanced Inputs
+bootstrap_module_version: "latest"
+starter_module_version: "latest"
+#output_folder_path: "/accelerator/output"
