@@ -11,3 +11,5 @@ NOTE:
 - Cannot [disable Azure Monitoring Agent](https://azure.github.io/Azure-Landing-Zones/accelerator/startermodules/terraform-platform-landing-zone/options/ama/) as there is a bug in the Terraform code provided by MS
 
 - `bootstrap_location` and `starter_locations` have to be `australiaeast` not `ae`. The following Azure resources will be created with long name, e.g. rg-management-australiaeast, that is too long.
+
+- `apply_approvers` cannot be empty, however the User Guide this property could. 
